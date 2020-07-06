@@ -14,7 +14,7 @@ EnemyB::EnemyB()
 
 	enemyDamage = 20;
 
-	hp = 25;
+	hp = 10;
 	isDead = false;
 	isHit = false;
 }
@@ -82,7 +82,7 @@ void EnemyB::Hit(float damage)
 	{
 		gameStat.score += 100;
 		if (gameStat.level <= 5)
-			gameStat.exp += 30;
+			gameStat.exp += 25 * gameStat.expGage;
 		isDead = true;
 		hp = 0;
 		

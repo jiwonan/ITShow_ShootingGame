@@ -15,7 +15,7 @@ EnemyC::EnemyC()
 	floatingTime = 0;
 	enemyDamage = 30;
 
-	hp = 35;
+	hp = 20;
 	isDead = false;
 	isHit = false;
 }
@@ -95,7 +95,7 @@ void EnemyC::Hit(float damage)
 	{
 		gameStat.score += 100;
 		if (gameStat.level <= 5)
-			gameStat.exp += 40;
+			gameStat.exp += 35 * gameStat.expGage;
 		isDead = true;
 		hp = 0;
 		

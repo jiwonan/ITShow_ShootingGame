@@ -167,7 +167,7 @@ void Player::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 200;
+		srcRect.right = gameStat.hp;
 		srcRect.bottom = 51;
 
 		D3DXVECTOR3 pos(10, WINDOW_HEIGHT - 70, 0);
@@ -201,7 +201,7 @@ void Player::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 200;
+		srcRect.right = gameStat.exp;
 		srcRect.bottom = 51;
 
 		D3DXVECTOR3 pos(10, WINDOW_HEIGHT - 70, 0);
@@ -224,7 +224,7 @@ float Player::GetRadius()
 void Player::Hit(float damage)
 {
 
-	gameStat.hp -= damage;
+	gameStat.hp -= damage * gameStat.playerDamage;
 	if (gameStat.hp <= 0)
 	{
 		gameStat.hp = 0;

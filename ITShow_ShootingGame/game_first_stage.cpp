@@ -9,9 +9,12 @@ GameFirstStage::GameFirstStage()
 	gameStat.exp = 0;
 	gameStat.level = 1;
 
-	gameStat.hp = 100;
+	gameStat.hp = 200;
 	gameStat.speed = 300;
-	gameStat.fullHP = 100;
+	gameStat.fullHP = 200;
+
+	gameStat.playerDamage = 1;
+	gameStat.expGage = 0.5;
 
 	gameStat.generalDamage = 15;
 	gameStat.spreadDamage = 2;
@@ -155,6 +158,36 @@ void GameFirstStage::Render()
 		fontRect.bottom = 10;
 
 		g_pFont->DrawText(NULL, L"Stage One", -1, &fontRect, DT_NOCLIP,
+			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+
+	// EXP
+	{
+		RECT fontRect;
+		fontRect.left = WINDOW_WIDTH - 80;
+		fontRect.top = 30;
+		fontRect.right = 30;
+		fontRect.bottom = 10;
+
+		WCHAR buffer_hp[128];
+		swprintf_s(buffer_hp, 128, L"EXP: %f", gameStat.exp);
+
+		g_pFont->DrawText(NULL, buffer_hp, -1, &fontRect, DT_NOCLIP,
+			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+
+	// HP
+	{
+		RECT fontRect;
+		fontRect.left = WINDOW_WIDTH - 80;
+		fontRect.top = 45;
+		fontRect.right = 30;
+		fontRect.bottom = 10;
+
+		WCHAR buffer_hp[128];
+		swprintf_s(buffer_hp, 128, L"HP: %d", gameStat.hp);
+
+		g_pFont->DrawText(NULL, buffer_hp, -1, &fontRect, DT_NOCLIP,
 			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 }

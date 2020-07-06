@@ -153,7 +153,7 @@ void BossB::Hit(float damage)
 		gameSystem.bossBullets.clear();
 		gameStat.playerState = kEnd;
 		if (gameStat.level <= 5)
-			gameStat.exp += hp;
+			gameStat.exp += hp * gameStat.expGage;
 	}
 }
 

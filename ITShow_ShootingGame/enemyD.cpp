@@ -15,7 +15,7 @@ EnemyD::EnemyD()
 	shootingTime = 0.5;
 	enemyDamage = 35;
 
-	hp = 40;
+	hp = 30;
 	isDead = false;
 	isHit = false;
 }
@@ -89,7 +89,7 @@ void EnemyD::Hit(float damage)
 	{
 		gameStat.score += 100;
 		if (gameStat.level <= 5)
-			gameStat.exp += 40;
+			gameStat.exp += 40 * gameStat.expGage;
 		isDead = true;
 		hp = 0;
 

@@ -15,7 +15,7 @@ EnemyA::EnemyA()
 
 	enemyDamage = 10;
 
-	hp = 1;
+	hp = 5;
 	isDead = false;
 	isHit = false;
 	enemyState = kMoveToDirection;
@@ -107,7 +107,7 @@ void EnemyA::Hit(float damage)
 	{
 		gameStat.score += 100;
 		if (gameStat.level <= 5)
-			gameStat.exp += 30;
+			gameStat.exp += 5 * gameStat.expGage;
 		isDead = true;
 		hp = 0;
 

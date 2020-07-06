@@ -22,12 +22,15 @@ public:
 
 	int playerLevelUp;
 	int level;
-	int exp;
+	float exp;
 
 	int generalDamage;
 	int spreadDamage;
 
 	float shootDelay;
+
+	float playerDamage;
+	float expGage;
 
 	bool cheatInvincible;
 
@@ -36,8 +39,9 @@ public:
 		playerLevelUp *= 1.5;
 		exp = 0;
 		level++;
-		fullHP *= 1.2;
 		hp = fullHP;
+		playerDamage *= 0.8;
+		expGage *= 1.2;
 		speed *= 1.2;
 		shootDelay /= 2;
 		generalDamage *= 1.2;

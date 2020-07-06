@@ -147,6 +147,6 @@ void BossA::Hit(float damage)
 		gameStat.playerState = kSecond;
 		gameStat.hp = gameStat.fullHP;
 		if (gameStat.level <= 5)
-			gameStat.exp += hp;
+			gameStat.exp += hp * gameStat.expGage;
 	}
 }
