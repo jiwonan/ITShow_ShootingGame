@@ -15,7 +15,7 @@ BossD::BossD()
 
 	enemyDamage = 50;
 
-	hp = 600;
+	hp = 303;
 	floatingTime = 0;
 	shootingTime = 0;
 	speed = 200;
@@ -146,7 +146,7 @@ float BossD::GetRadius()
 
 void BossD::Hit(float damage)
 {
-	hp -= (damage*0.4);
+	hp -= (damage*0.2);
 	isHit = true;
 	if (hp <= 0)
 	{

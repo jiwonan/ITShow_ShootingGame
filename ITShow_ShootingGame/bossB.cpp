@@ -14,7 +14,7 @@ BossB::BossB()
 
 	enemyDamage = 40;
 
-	hp = 300;
+	hp = 303;
 	floatingTime = 0;
 	shootingTime = 0;
 	speed = 200;

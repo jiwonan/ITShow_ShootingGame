@@ -297,4 +297,42 @@ void GameSystem::Render()
 		effects[i]->Render();
 	}
 	skill.Render();
+
+	// level
+	{
+		int lv = GAME_PLAYER_LEVEL_ONE;
+		switch (gameStat.level)
+		{
+		case 1:
+			lv = GAME_PLAYER_LEVEL_ONE;
+			break;
+		case 2:
+			lv = GAME_PLAYER_LEVEL_TWO;
+			break;
+		case 3:
+			lv = GAME_PLAYER_LEVEL_THREE;
+			break;
+		case 4:
+			lv = GAME_PLAYER_LEVEL_FOUR;
+			break;
+		case 5:
+			lv = GAME_PLAYER_LEVEL_FIVE;
+			break;
+		}
+		TextureElement* newElement = textureManager.GetTexture(lv);
+
+		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		RECT srcRect;
+		srcRect.left = 0;
+		srcRect.top = 0;
+		srcRect.right = 64;
+		srcRect.bottom = 64;
+
+		D3DXVECTOR3 pos(5, 5, 0);
+
+		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
+
+		newElement->sprite->End();
+	}
 }

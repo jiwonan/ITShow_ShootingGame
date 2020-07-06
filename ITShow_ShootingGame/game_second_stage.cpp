@@ -121,20 +121,7 @@ void GameSecondStage::Render()
 		g_pFont->DrawText(NULL, buffer, -1, &fontRect, DT_NOCLIP,
 			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 	}
-	// Player Level
-	{
-		RECT fontRect;
-		fontRect.left = 0;
-		fontRect.top = 15;
-		fontRect.right = 640;
-		fontRect.bottom = 10;
 
-		WCHAR buffer_hp[128];
-		swprintf_s(buffer_hp, 128, L"Level.%d", gameStat.level);
-
-		g_pFont->DrawText(NULL, buffer_hp, -1, &fontRect, DT_NOCLIP,
-			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
-	}
 	// Stage
 	{
 		RECT fontRect;

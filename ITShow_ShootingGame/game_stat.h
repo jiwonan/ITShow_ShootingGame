@@ -41,9 +41,9 @@ public:
 		level++;
 		hp = fullHP;
 		playerDamage *= 0.8;
-		expGage *= 1.2;
+		expGage *= 0.7;
 		speed *= 1.2;
-		shootDelay /= 2;
+		shootDelay /= 1.5;
 		generalDamage *= 1.2;
 		spreadDamage *= 1.2;
 	}

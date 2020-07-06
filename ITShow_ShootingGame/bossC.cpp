@@ -14,7 +14,7 @@ BossC::BossC()
 
 	enemyDamage = 45;
 
-	hp = 500;
+	hp = 303;
 	floatingTime = 0;
 	speed = 200;
 }
@@ -135,7 +135,7 @@ float BossC::GetRadius()
 
 void BossC::Hit(float damage)
 {
-	hp -= (damage*0.5);
+	hp -= (damage*0.3);
 	isHit = true;
 	if (hp <= 0)
 	{

@@ -4,17 +4,17 @@
 
 TitleStage::TitleStage()
 {
-	btnX = WINDOW_WIDTH / 2 - 90;
+	btnW = 230;
+	btnH = 60;
+
+	btnX = WINDOW_WIDTH / 2 - btnW / 2 + 100;
 	btnY = WINDOW_HEIGHT * 0.7 - 55;
 
-	btnW = 180;
-	btnH = 50;
+	btnW2 = 230;
+	btnH2 = 60;
 
-	btnX2 = WINDOW_WIDTH / 2 - 90;
-	btnY2 = WINDOW_HEIGHT * 0.7 + 35;
-
-	btnW2 = 180;
-	btnH2 = 50;
+	btnX2 = WINDOW_WIDTH / 2 - btnW2 / 2 + 100;
+	btnY2 = WINDOW_HEIGHT * 0.7 + 55;
 
 }
 
@@ -69,8 +69,8 @@ void TitleStage::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 230;
-		srcRect.bottom = 60;
+		srcRect.right = btnW;
+		srcRect.bottom = btnH;
 
 		D3DXVECTOR3 pos(btnX, btnY, 0);
 
@@ -88,8 +88,8 @@ void TitleStage::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 230;
-		srcRect.bottom = 60;
+		srcRect.right = btnW2;
+		srcRect.bottom = btnH2;
 
 		D3DXVECTOR3 pos(btnX2, btnY2, 0);
 

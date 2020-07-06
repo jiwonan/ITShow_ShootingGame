@@ -68,13 +68,12 @@ void Player::Update()
 		else weaponType = kSpread;
 	}
 
-	shootTime += deltaTime;
 	if (inputManager.prevKeyBuffer['Z'] == 1 &&
 		inputManager.keyBuffer['Z'] == 0 && weaponType == kSpread)
 	{
 		gameSystem.GeneratePlayerBulletSpread(playerX, playerY);
 	}
-
+	shootTime += deltaTime;
 	if (shootTime > gameStat.shootDelay)
 	{
 		if (inputManager.keyBuffer['Z'] == 1 && weaponType == kGeneral)
@@ -95,10 +94,10 @@ void Player::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 27;
-		srcRect.bottom = 42;
+		srcRect.right = 49;
+		srcRect.bottom = 49;
 
-		D3DXVECTOR3 pos(playerX - 13, playerY - 21, 0);
+		D3DXVECTOR3 pos(playerX - 25, playerY - 25, 0);
 
 		D3DCOLOR color;
 
@@ -140,24 +139,6 @@ void Player::Render()
 		newElement->sprite->End();
 	}
 
-	/*
-	// Player HP BG
-	{
-		TextureElement* newElement = textureManager.GetTexture(GAME_HP_BG_UI);
-
-		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
-
-		RECT srcRect;
-		srcRect.left = 0;
-		srcRect.top = 0;
-		srcRect.right = gameStat.fullHP;
-		srcRect.bottom = 10;
-
-		D3DXVECTOR3 pos(60, WINDOW_HEIGHT - 60, 0);
-		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
-		newElement->sprite->End();
-	}
-	*/
 	// Player HP
 	{
 		TextureElement* newElement = textureManager.GetTexture(GAME_HP_UI);
@@ -174,23 +155,6 @@ void Player::Render()
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 		newElement->sprite->End();
 	}
-
-	// Player EXP BG
-	/*{
-		TextureElement* newElement = textureManager.GetTexture(GAME_HP_BG_UI);
-
-		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
-
-		RECT srcRect;
-		srcRect.left = 0;
-		srcRect.top = 0;
-		srcRect.right = gameStat.playerLevelUp;
-		srcRect.bottom = 10;
-
-		D3DXVECTOR3 pos(60, WINDOW_HEIGHT - 40, 0);
-		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
-		newElement->sprite->End();
-	}*/
 
 	// Player EXP
 	{
@@ -209,6 +173,29 @@ void Player::Render()
 		newElement->sprite->End();
 	}
 
+	// Player bullet type
+	{
+		int id_togle = kSpread;
+		if (weaponType == kSpread)
+			id_togle = GAME_PLAYER_BULLET_SPREAD_TOGLE;
+		else if (weaponType == kGeneral)
+			id_togle = GAME_PLAYER_BULLET_DIRECT_TOGLE;
+
+		TextureElement* newElement = textureManager.GetTexture(id_togle);
+
+		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		RECT srcRect;
+		srcRect.left = 0;
+		srcRect.top = 0;
+		srcRect.right = 200;
+		srcRect.bottom = 51;
+
+		D3DXVECTOR3 pos(10, WINDOW_HEIGHT - 70, 0);
+		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
+		newElement->sprite->End();
+	}
+
 }
 
 D3DXVECTOR2 Player::GetPosition()
@@ -218,7 +205,7 @@ D3DXVECTOR2 Player::GetPosition()
 
 float Player::GetRadius()
 {
-	return 13.0f;
+	return 25.0f;
 }
 
 void Player::Hit(float damage)

@@ -48,36 +48,63 @@ void Skill::Update(float x, float y)
 
 void Skill::Render()
 {
+	// Shield
 	if (ShieldOn)
 	{
-		TextureElement* newElement = textureManager.GetTexture(GAME_SKILL_SHILD);
+		TextureElement* newElement = textureManager.GetTexture(GAME_SKILL_SHIELD);
 
 		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 32;
+		srcRect.right = 64;
 		srcRect.bottom = 64;
 
-		D3DXVECTOR3 pos(posX - 16, posY - 32, 0);
+		D3DXVECTOR3 pos(posX - 32, posY - 32, 0);
 
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
 		newElement->sprite->End();
 	}
 
-	RECT fontRect;
-	fontRect.left = 0;
-	fontRect.top = 30;
-	fontRect.right = 10;
-	fontRect.bottom = 10;
+	// Shield Icon
+	{
+		TextureElement* newElement = textureManager.GetTexture(GAME_SKILL_SHIELD_COOL);
 
-	WCHAR buffer[128];
-	swprintf_s(buffer, 128, L"ShieldCoolTime.%d", (int)ShieldCoolTime);
+		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
-	g_pFont->DrawText(NULL, buffer, -1, &fontRect, DT_NOCLIP,
-		D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+		RECT srcRect;
+		srcRect.left = 0;
+		srcRect.top = 0;
+		srcRect.right = 64;
+		srcRect.bottom = 64;
+
+		D3DXVECTOR3 pos(WINDOW_WIDTH - 200, WINDOW_HEIGHT - 100, 0);
+
+		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
+
+		newElement->sprite->End();
+	}
+
+	// Shield CoolTime Icon
+	{
+		TextureElement* newElement = textureManager.GetTexture(GAME_SKILL_COOL_BOX);
+
+		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		RECT srcRect;
+		srcRect.left = 0;
+		srcRect.top = 0;
+		srcRect.right = 64;
+		srcRect.bottom = 64 * (ShieldCoolTime / 7);
+
+		D3DXVECTOR3 pos(WINDOW_WIDTH - 200, WINDOW_HEIGHT - 100, 0);
+
+		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
+
+		newElement->sprite->End();
+	}	
 }
 
 D3DXVECTOR2 Skill::GetPosition()

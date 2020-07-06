@@ -85,7 +85,7 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"backgrounds/howtoplay.png", HOWTOPLAY_SCREEN_IMAGE);
 
 	textureManager.LoadTexture(L"backgrounds/bg.png", GAME_BACKGROUND_IMAGE);
-	textureManager.LoadTexture(L"player/player_body.png", GAME_PLAYER_BODY_IMAGE);
+	textureManager.LoadTexture(L"player/player.png", GAME_PLAYER_BODY_IMAGE);
 	textureManager.LoadTexture(L"player/player_bullet.png", GAME_PLAYER_BULLET_IMAGE);
 	textureManager.LoadTexture(L"player/player_bullet_g.png", GAME_PLAYER_BULLET_G_IMAGE);
 
@@ -105,6 +105,10 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"ui/hp_bg.png", GAME_HP_BG_UI);
 	textureManager.LoadTexture(L"ui/exp_bar.png", GAME_EXP_UI);
 	textureManager.LoadTexture(L"ui/door.png", GAME_DOOR_UI);
+	textureManager.LoadTexture(L"ui/ui_spread_bullet.png", GAME_PLAYER_BULLET_SPREAD_TOGLE);
+	textureManager.LoadTexture(L"ui/ui_direct_bullet.png", GAME_PLAYER_BULLET_DIRECT_TOGLE);
+	textureManager.LoadTexture(L"ui/boss_hp.png", GAME_BOSS_HP_UI);
+	textureManager.LoadTexture(L"ui/boss_hp_bg.png", GAME_BOSS_HP_BG_UI);
 
 	textureManager.LoadTexture(L"effects/enemies_explosion_a.png", GAME_ENEMY_EXPLOSION_A);
 
@@ -112,9 +116,16 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"ui/item_level.png", GAME_ITEM_LEVEL);
 	textureManager.LoadTexture(L"ui/item_reset.png", GAME_ITEM_RESET);
 
-	textureManager.LoadTexture(L"ui/skill_shield.png", GAME_SKILL_SHILD);
+	textureManager.LoadTexture(L"ui/skill_shield.png", GAME_SKILL_SHIELD);
 	textureManager.LoadTexture(L"ui/player_info_bar.png", GAME_PLAYER_INFO_BAR);
+	textureManager.LoadTexture(L"ui/skill_shield_cool.png", GAME_SKILL_SHIELD_COOL);
+	textureManager.LoadTexture(L"ui/skill_cool_box.png", GAME_SKILL_COOL_BOX);
 
+	textureManager.LoadTexture(L"ui/level1.png", GAME_PLAYER_LEVEL_ONE);
+	textureManager.LoadTexture(L"ui/level2.png", GAME_PLAYER_LEVEL_TWO);
+	textureManager.LoadTexture(L"ui/level3.png", GAME_PLAYER_LEVEL_THREE);
+	textureManager.LoadTexture(L"ui/level4.png", GAME_PLAYER_LEVEL_FOUR);
+	textureManager.LoadTexture(L"ui/level5.png", GAME_PLAYER_LEVEL_FIVE);
 
 	stageManager.LoadTitleStage();
 
