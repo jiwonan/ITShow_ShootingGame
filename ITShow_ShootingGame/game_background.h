@@ -6,4 +6,7 @@ public:
 	void Render();
 
 	float BackgroundY;
+
+	float SizeX;
+	float SizeY;
 };

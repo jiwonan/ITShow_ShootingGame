@@ -5,6 +5,7 @@
 GameSecondStage::GameSecondStage()
 {
 	gameSystem.ClearAll();
+	gameSystem.player = &player;
 
 	D3DXCreateFont(g_pd3dDevice, -12, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET,
 		OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,

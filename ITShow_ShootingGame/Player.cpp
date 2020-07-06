@@ -122,6 +122,25 @@ void Player::Render()
 
 		newElement->sprite->End();
 	}
+
+	// Player Info Bar
+	{
+		TextureElement* newElement = textureManager.GetTexture(GAME_PLAYER_INFO_BAR);
+
+		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		RECT srcRect;
+		srcRect.left = 0;
+		srcRect.top = 0;
+		srcRect.right = 200;
+		srcRect.bottom = 51;
+
+		D3DXVECTOR3 pos(10, WINDOW_HEIGHT - 70, 0);
+		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
+		newElement->sprite->End();
+	}
+
+	/*
 	// Player HP BG
 	{
 		TextureElement* newElement = textureManager.GetTexture(GAME_HP_BG_UI);
@@ -134,11 +153,11 @@ void Player::Render()
 		srcRect.right = gameStat.fullHP;
 		srcRect.bottom = 10;
 
-		D3DXVECTOR3 pos(playerX - (gameStat.fullHP / 2), playerY + 30, 0);
+		D3DXVECTOR3 pos(60, WINDOW_HEIGHT - 60, 0);
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 		newElement->sprite->End();
 	}
-
+	*/
 	// Player HP
 	{
 		TextureElement* newElement = textureManager.GetTexture(GAME_HP_UI);
@@ -148,16 +167,16 @@ void Player::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = gameStat.hp;
-		srcRect.bottom = 10;
+		srcRect.right = 200;
+		srcRect.bottom = 51;
 
-		D3DXVECTOR3 pos(playerX - (gameStat.fullHP / 2), playerY + 30, 0);
+		D3DXVECTOR3 pos(10, WINDOW_HEIGHT - 70, 0);
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 		newElement->sprite->End();
 	}
 
 	// Player EXP BG
-	{
+	/*{
 		TextureElement* newElement = textureManager.GetTexture(GAME_HP_BG_UI);
 
 		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
@@ -168,10 +187,10 @@ void Player::Render()
 		srcRect.right = gameStat.playerLevelUp;
 		srcRect.bottom = 10;
 
-		D3DXVECTOR3 pos(WINDOW_WIDTH / 2 - gameStat.playerLevelUp / 2, 470, 0);
+		D3DXVECTOR3 pos(60, WINDOW_HEIGHT - 40, 0);
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 		newElement->sprite->End();
-	}
+	}*/
 
 	// Player EXP
 	{
@@ -182,10 +201,10 @@ void Player::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = gameStat.exp;
-		srcRect.bottom = 10;
+		srcRect.right = 200;
+		srcRect.bottom = 51;
 
-		D3DXVECTOR3 pos(WINDOW_WIDTH / 2 - gameStat.playerLevelUp / 2, 470, 0);
+		D3DXVECTOR3 pos(10, WINDOW_HEIGHT - 70, 0);
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 		newElement->sprite->End();
 	}
@@ -204,6 +223,7 @@ float Player::GetRadius()
 
 void Player::Hit(float damage)
 {
+
 	gameStat.hp -= damage;
 	if (gameStat.hp <= 0)
 	{
@@ -222,8 +242,12 @@ void Player::HitByItem(int type)
 		gameStat.hp *= 1.1;
 		break;
 	case kLevelUp:
-		gameStat.PlayerLevelUp();
-		break;
+		{
+			if (gameStat.level < 5) {
+				gameStat.PlayerLevelUp();
+			}
+			break;
+		}
 	case kResetCoolTime:
 		gameSystem.ResetSkillCoolTime();
 		break;

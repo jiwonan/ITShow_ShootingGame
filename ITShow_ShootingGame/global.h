@@ -9,8 +9,8 @@
 #include "game_system.h"
 #include "cheat_manager.h"
 
-#define WINDOW_WIDTH 640
-#define WINDOW_HEIGHT 480
+#define WINDOW_WIDTH 800
+#define WINDOW_HEIGHT 600
 
 #define TITLE_SCREEN_IMAGE 1000
 #define TITLE_BTN_IMAGE 1001
@@ -40,6 +40,7 @@
 #define GAME_HP_UI 5002
 #define GAME_EXP_UI 5003
 #define GAME_DOOR_UI 5004
+#define GAME_PLAYER_INFO_BAR 5005
 
 #define GAME_ENEMY_EXPLOSION_A 6000
 

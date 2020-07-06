@@ -141,7 +141,7 @@ void GameFirstStage::Render()
 		fontRect.bottom = 10;
 
 		WCHAR buffer_hp[128];
-		swprintf_s(buffer_hp, 128, L"Level.%d", gameStat.level);
+		swprintf_s(buffer_hp, 128, L"%d", gameStat.level);
 
 		g_pFont->DrawText(NULL, buffer_hp, -1, &fontRect, DT_NOCLIP,
 			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
@@ -149,7 +149,7 @@ void GameFirstStage::Render()
 	// Stage
 	{
 		RECT fontRect;
-		fontRect.left = 545;
+		fontRect.left = WINDOW_WIDTH - 80;
 		fontRect.top = 0;
 		fontRect.right = 30;
 		fontRect.bottom = 10;

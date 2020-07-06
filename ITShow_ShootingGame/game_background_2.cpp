@@ -5,6 +5,9 @@
 GameBackground2::GameBackground2()
 {
 	BackgroundY = 0;
+
+	SizeX = 800;
+	SizeY = 720;
 }
 
 
@@ -12,7 +15,7 @@ void GameBackground2::Update()
 {
 	BackgroundY += 3;
 
-	BackgroundY = (int)BackgroundY % 680;
+	BackgroundY = (int)BackgroundY % (int)SizeY;
 }
 
 void GameBackground2::Render()
@@ -24,13 +27,13 @@ void GameBackground2::Render()
 	RECT srcRect;
 	srcRect.left = 0;
 	srcRect.top = 0;
-	srcRect.right = 640;
-	srcRect.bottom = 680;
+	srcRect.right = SizeX;
+	srcRect.bottom = SizeY;
 
 	D3DXVECTOR3 pos(0, round(BackgroundY), 0);
 	newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
-	pos = D3DXVECTOR3(0, BackgroundY - 680, 0);
+	pos = D3DXVECTOR3(0, BackgroundY - SizeY, 0);
 	newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
 	newElement->sprite->End();

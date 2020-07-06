@@ -52,8 +52,8 @@ void TitleStage::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 640;
-		srcRect.bottom = 480;
+		srcRect.right = 800;
+		srcRect.bottom = 600;
 
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, nullptr, D3DCOLOR_XRGB(255, 255, 255));
 
@@ -69,8 +69,8 @@ void TitleStage::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 180;
-		srcRect.bottom = 50;
+		srcRect.right = 230;
+		srcRect.bottom = 60;
 
 		D3DXVECTOR3 pos(btnX, btnY, 0);
 
@@ -88,8 +88,8 @@ void TitleStage::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 180;
-		srcRect.bottom = 50;
+		srcRect.right = 230;
+		srcRect.bottom = 60;
 
 		D3DXVECTOR3 pos(btnX2, btnY2, 0);
 

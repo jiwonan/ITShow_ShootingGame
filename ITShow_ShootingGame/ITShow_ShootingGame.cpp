@@ -84,7 +84,7 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"ui/ui_btn_howto.png", TITLE_BTN_IMAGE_HOWTO);
 	textureManager.LoadTexture(L"backgrounds/howtoplay.png", HOWTOPLAY_SCREEN_IMAGE);
 
-	textureManager.LoadTexture(L"backgrounds/background.png", GAME_BACKGROUND_IMAGE);
+	textureManager.LoadTexture(L"backgrounds/bg.png", GAME_BACKGROUND_IMAGE);
 	textureManager.LoadTexture(L"player/player_body.png", GAME_PLAYER_BODY_IMAGE);
 	textureManager.LoadTexture(L"player/player_bullet.png", GAME_PLAYER_BULLET_IMAGE);
 	textureManager.LoadTexture(L"player/player_bullet_g.png", GAME_PLAYER_BULLET_G_IMAGE);
@@ -101,9 +101,9 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"enemies/enemy_c.png", GAME_ENEMY_C_BODY_IMAGE);
 	textureManager.LoadTexture(L"enemies/enemy_d.png", GAME_ENEMY_D_BODY_IMAGE);
 
-	textureManager.LoadTexture(L"ui/hp.png", GAME_HP_UI);
+	textureManager.LoadTexture(L"ui/hp_bar.png", GAME_HP_UI);
 	textureManager.LoadTexture(L"ui/hp_bg.png", GAME_HP_BG_UI);
-	textureManager.LoadTexture(L"ui/exp.png", GAME_EXP_UI);
+	textureManager.LoadTexture(L"ui/exp_bar.png", GAME_EXP_UI);
 	textureManager.LoadTexture(L"ui/door.png", GAME_DOOR_UI);
 
 	textureManager.LoadTexture(L"effects/enemies_explosion_a.png", GAME_ENEMY_EXPLOSION_A);
@@ -113,6 +113,7 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"ui/item_reset.png", GAME_ITEM_RESET);
 
 	textureManager.LoadTexture(L"ui/skill_shield.png", GAME_SKILL_SHILD);
+	textureManager.LoadTexture(L"ui/player_info_bar.png", GAME_PLAYER_INFO_BAR);
 
 
 	stageManager.LoadTitleStage();
@@ -136,13 +137,13 @@ HRESULT InitD3D(HWND hWnd)
 	d3dpp.BackBufferFormat = D3DFMT_UNKNOWN;
 	*/
 	// full Screen.
-
+	
 	d3dpp.Windowed = false;
 	d3dpp.SwapEffect = D3DSWAPEFFECT_DISCARD;
 	d3dpp.BackBufferWidth = WINDOW_WIDTH;
 	d3dpp.BackBufferHeight = WINDOW_HEIGHT;
 	d3dpp.BackBufferFormat = D3DFMT_A8R8G8B8;
-
+	
 	if (FAILED(g_pD3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, hWnd,
 		D3DCREATE_SOFTWARE_VERTEXPROCESSING,
 		&d3dpp, &g_pd3dDevice)))
