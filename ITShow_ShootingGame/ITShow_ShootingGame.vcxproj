@@ -175,6 +175,8 @@
     <ClInclude Include="player_bullet.h" />
     <ClInclude Include="player_bullet_g.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="SDKsound.h" />
+    <ClInclude Include="SDKwavefile.h" />
     <ClInclude Include="Skill.h" />
     <ClInclude Include="sprite_effect.h" />
     <ClInclude Include="Stage.h" />
@@ -208,6 +210,8 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="player_bullet.cpp" />
     <ClCompile Include="player_bullet_g.cpp" />
+    <ClCompile Include="SDKsound.cpp" />
+    <ClCompile Include="SDKwavefile.cpp" />
     <ClCompile Include="Skill.cpp" />
     <ClCompile Include="stage_manager.cpp" />
     <ClCompile Include="texture_manager.cpp" />
