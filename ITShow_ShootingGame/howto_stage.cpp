@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "howto_stage.h"
 #include "global.h"
 

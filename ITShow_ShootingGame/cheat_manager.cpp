@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "cheat_manager.h"
 #include "global.h"
 

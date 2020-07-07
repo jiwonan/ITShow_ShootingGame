@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "enemyA.h"
 #include "global.h"
 

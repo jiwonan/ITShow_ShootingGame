@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "game_second_stage.h"
 #include "global.h"
 
@@ -111,7 +112,7 @@ void GameSecondStage::Render()
 	{
 		RECT fontRect;
 		fontRect.left = 0;
-		fontRect.top = 0;
+		fontRect.top = 65;
 		fontRect.right = 640;
 		fontRect.bottom = 10;
 

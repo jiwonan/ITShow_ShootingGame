@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "player_bullet.h"
 #include "global.h"
 

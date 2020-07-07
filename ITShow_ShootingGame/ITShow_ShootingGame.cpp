@@ -1,6 +1,7 @@
 ﻿// ITShow_ShootingGame.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
 
+#include <Windows.h>
 #include "framework.h"
 #include "ITShow_ShootingGame.h"
 
@@ -34,6 +35,7 @@ StageManager stageManager;
 GameStat gameStat;
 GameSystem gameSystem;
 CheatManager cheatManager;
+
 
 void EngineUpdate()
 {
@@ -75,6 +77,16 @@ VOID EngineRender()
 	g_pd3dDevice->Present(NULL, NULL, NULL, NULL);
 }
 
+void InitMySound(HWND hWnd)
+{
+	/*soundManager.Initialize(hWnd, DSSCL_NORMAL);
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/epic_end.wav");
+		soundManager.Create(&soundManager.sndPlayerBullet, fileName, DSBCAPS_CTRLVOLUME);
+	}*/
+}
+
 void InitMyStuff()
 {
 	textureManager.LoadTexture(L"backgrounds/title.png", TITLE_SCREEN_IMAGE);
@@ -83,6 +95,7 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"ui/ui_btn_totitle.png", GAMEOVER_BTN_IMG);
 	textureManager.LoadTexture(L"ui/ui_btn_howto.png", TITLE_BTN_IMAGE_HOWTO);
 	textureManager.LoadTexture(L"backgrounds/howtoplay.png", HOWTOPLAY_SCREEN_IMAGE);
+	textureManager.LoadTexture(L"backgrounds/fade.png", FADE_SCREEN);
 
 	textureManager.LoadTexture(L"backgrounds/bg.png", GAME_BACKGROUND_IMAGE);
 	textureManager.LoadTexture(L"player/player.png", GAME_PLAYER_BODY_IMAGE);
@@ -239,6 +252,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
 	InitD3D(gWindowHandle);
 	InitMyStuff();
+	InitMySound(gWindowHandle);
 
 	ShowWindow(gWindowHandle, nCmdShow);
 	UpdateWindow(gWindowHandle);

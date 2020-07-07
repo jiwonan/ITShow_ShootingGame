@@ -1,3 +1,4 @@
+#include "stdafx.h"
 #include "game_system.h"
 #include "player_bullet.h"
 #include "enemyA.h"

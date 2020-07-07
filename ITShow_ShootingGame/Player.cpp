@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "player.h"
 #include "global.h"
 #include "item.h"
@@ -68,16 +69,19 @@ void Player::Update()
 		else weaponType = kSpread;
 	}
 
-	if (inputManager.prevKeyBuffer['Z'] == 1 &&
-		inputManager.keyBuffer['Z'] == 0 && weaponType == kSpread)
-	{
-		gameSystem.GeneratePlayerBulletSpread(playerX, playerY);
-	}
 	shootTime += deltaTime;
 	if (shootTime > gameStat.shootDelay)
 	{
+		if (inputManager.keyBuffer['Z'] == 1 && weaponType == kSpread)
+		{
+			//soundManager.sndPlayerBullet->Reset();
+			//soundManager.sndPlayerBullet->Play(0, 0, 1);
+			gameSystem.GeneratePlayerBulletSpread(playerX, playerY);
+		}
 		if (inputManager.keyBuffer['Z'] == 1 && weaponType == kGeneral)
 		{
+			//soundManager.sndPlayerBullet->Reset();
+			//soundManager.sndPlayerBullet->Play(0, 0, 1);
 			gameSystem.GeneratePlayerBulletGeneral(playerX, playerY);
 		}
 		shootTime = 0;

@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "texture_manager.h"
 #include "global.h"
 

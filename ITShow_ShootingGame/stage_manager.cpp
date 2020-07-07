@@ -1,3 +1,5 @@
+#include "stdafx.h"
+
 #include "stage_manager.h"
 #include "global.h"
 

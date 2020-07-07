@@ -1,5 +1,6 @@
 #pragma once
 
+#include <winnt.h>
 #include "Stage.h"
 
 class TimerStage : public Stage

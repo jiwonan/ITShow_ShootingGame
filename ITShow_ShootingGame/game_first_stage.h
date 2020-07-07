@@ -7,6 +7,14 @@
 class GameFirstStage : public Stage
 {
 public:
+	enum GameState
+	{
+		kFading,
+		kPlaying,
+		kPausing,
+		kEnding
+	};
+
 	GameBackground background;
 	Player player;
 
@@ -17,5 +25,8 @@ public:
 	float enemyTime;
 
 	int per;
+
+	GameState gameState;
+	float alpha;
 };
 

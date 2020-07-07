@@ -4,6 +4,13 @@
 class TitleStage : public Stage
 {
 public:
+	enum TitleStageState
+	{
+		kTitleStage,
+		kFading,
+		kFadeOutDone
+	};
+
 	TitleStage();
 	void Update();
 	void Render();
@@ -17,5 +24,10 @@ public:
 	float btnY2;
 	float btnW2;
 	float btnH2;
+
+
+	// state machine	
+	TitleStageState titleStageState;
+	float alpha;
 };
 

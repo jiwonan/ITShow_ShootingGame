@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "game_first_stage.h"
 #include "global.h"
 
@@ -33,13 +34,29 @@ GameFirstStage::GameFirstStage()
 	gameStat.playerLevelUp = 300;
 
 	cheatManager.isPause = false;
+
+	gameState = kFading;
+	alpha = 255;
 }
 
 
 void GameFirstStage::Update()
 {
+	if (gameState == kFading)
+	{
+		alpha -= 4;
+
+		if (alpha <= 0)
+		{
+			alpha = 0;
+			gameState = kPlaying;
+
+			// soundManager.sndLevel1Background->Reset();
+			// soundManager.sndLevel1Background->Play(0, DSBPLAY_LOOPING, 1);
+		}
+	}
 	// Pause가 아닐 때.
-	if (!cheatManager.isPause)
+	else if (!cheatManager.isPause && gameState != kEnding)
 	{
 		int enemyType = rand() % 3 + 1;
 		// EnemyA 랜덤 생성.
@@ -74,7 +91,7 @@ void GameFirstStage::Update()
 		}
 		player.Update();
 		gameSystem.Update();
-		
+
 		// 중간 보스 생성.
 		if (gameStat.score > 1000 && gameStat.playerState == kFirst)
 		{
@@ -95,22 +112,33 @@ void GameFirstStage::Update()
 			gameStat.PlayerLevelUp();
 		}
 		cheatManager.Update();
-	}
 
-	if (inputManager.keyBuffer[VK_F7] == 1)
-	{
-		cheatManager.isPause = true;
-		cheatManager.Render();
-	}
-	if (inputManager.keyBuffer[VK_F7] == 0)
-	{
-		cheatManager.isPause = false;
-	}
 
-	if (gameStat.playerState == kEnd)
+		if (inputManager.keyBuffer[VK_F7] == 1)
+		{
+			cheatManager.isPause = true;
+			cheatManager.Render();
+		}
+		if (inputManager.keyBuffer[VK_F7] == 0)
+		{
+			cheatManager.isPause = false;
+		}
+
+		if (gameStat.playerState == kEnd)
+		{
+			gameState = kEnding;
+			gameStat.score += 1000;
+		}
+	}
+	
+	if (gameState == kEnding)
 	{
-		stageManager.LoadTimerStage();
-		gameStat.score += 1000;
+		alpha += 3;
+		if (alpha > 255)
+		{
+			alpha = 255;
+			stageManager.LoadTimerStage();
+		}
 	}
 }
 
@@ -124,7 +152,7 @@ void GameFirstStage::Render()
 	{
 		RECT fontRect;
 		fontRect.left = 0;
-		fontRect.top = 0;
+		fontRect.top = 65;
 		fontRect.right = 640;
 		fontRect.bottom = 10;
 
@@ -144,5 +172,44 @@ void GameFirstStage::Render()
 
 		g_pFont->DrawText(NULL, L"Stage One", -1, &fontRect, DT_NOCLIP,
 			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+
+	if (gameState == kFading)
+	{
+		TextureElement* fadeElement = textureManager.GetTexture(FADE_SCREEN);
+
+		fadeElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		RECT srcRect;
+		srcRect.left = 0;
+
+		srcRect.top = 0;
+		srcRect.right = 800;
+		srcRect.bottom = 600;
+
+		D3DXVECTOR3 pos(0, 0, 0);
+		fadeElement->sprite->Draw(fadeElement->texture, &srcRect, nullptr, &pos,
+			D3DCOLOR_RGBA(0, 0, 0, (int)alpha));
+
+		fadeElement->sprite->End();
+	}
+
+	if (gameState == kEnding)
+	{
+		TextureElement* fadeElement = textureManager.GetTexture(FADE_SCREEN);
+
+		fadeElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		RECT srcRect;
+		srcRect.left = 0;
+		srcRect.top = 0;
+		srcRect.right = 800;
+		srcRect.bottom = 600;
+
+		D3DXVECTOR3 pos(0, 0, 0);
+		fadeElement->sprite->Draw(fadeElement->texture, &srcRect, nullptr, &pos,
+			D3DCOLOR_RGBA(0, 0, 0, (int)alpha));
+
+		fadeElement->sprite->End();
 	}
 }

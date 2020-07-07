@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "title_stage.h"
 #include "global.h"
 
@@ -16,27 +17,42 @@ TitleStage::TitleStage()
 	btnX2 = WINDOW_WIDTH / 2 - btnW2 / 2 + 100;
 	btnY2 = WINDOW_HEIGHT * 0.7 + 55;
 
+	titleStageState = kTitleStage;
+	alpha = 0;
+
 }
 
 void TitleStage::Update()
 {
-	POINT pt;
-	GetCursorPos(&pt);
-	ScreenToClient(gWindowHandle, &pt);
-
-	if (inputManager.keyBuffer[VK_LBUTTON] == 0 &&
-		inputManager.prevKeyBuffer[VK_LBUTTON] == 1)
+	if (titleStageState == kTitleStage)
 	{
-		if (pt.x > btnX&&pt.x<btnX + btnW &&
-			pt.y>btnY&&pt.y < btnY + btnH)
-		{
-			stageManager.LoadGameFirstStage();
-		}
+		POINT pt;
+		GetCursorPos(&pt);
+		ScreenToClient(gWindowHandle, &pt);
 
-		if (pt.x > btnX2&&pt.x<btnX2 + btnW2 &&
-			pt.y>btnY2&&pt.y < btnY2 + btnH2)
+		if (inputManager.keyBuffer[VK_LBUTTON] == 0 &&
+			inputManager.prevKeyBuffer[VK_LBUTTON] == 1)
 		{
-			stageManager.LoadHowtoStage();
+			if (pt.x > btnX && pt.x<btnX + btnW &&
+				pt.y>btnY && pt.y < btnY + btnH)
+			{
+				titleStageState = kFading;
+			}
+
+			if (pt.x > btnX2 && pt.x<btnX2 + btnW2 &&
+				pt.y>btnY2 && pt.y < btnY2 + btnH2)
+			{
+				stageManager.LoadHowtoStage();
+			}
+		}
+	}
+	else if (titleStageState == kFading)
+	{
+		alpha += 3;
+		if (alpha > 255)
+		{
+			alpha = 255;
+			stageManager.LoadGameFirstStage();
 		}
 	}
 }
@@ -96,5 +112,25 @@ void TitleStage::Render()
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
 		newElement->sprite->End();
+	}
+
+
+	if (titleStageState == kFading)
+	{
+		TextureElement* fadeElement = textureManager.GetTexture(FADE_SCREEN);
+
+		fadeElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		RECT srcRect;
+		srcRect.left = 0;
+		srcRect.top = 0;
+		srcRect.right = 800;
+		srcRect.bottom = 600;
+
+		D3DXVECTOR3 pos(0, 0, 0);
+		fadeElement->sprite->Draw(fadeElement->texture, &srcRect, nullptr, &pos,
+			D3DCOLOR_RGBA(0, 0, 0, (int)alpha));
+
+		fadeElement->sprite->End();
 	}
 }

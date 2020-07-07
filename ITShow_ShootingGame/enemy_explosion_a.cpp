@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "enemy_explosion_a.h"
 #include "global.h"
 

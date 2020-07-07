@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "game_background.h"
 #include "global.h"
 

@@ -3,6 +3,7 @@
 #include "sprite_effect.h"
 #include "anim_frame.h"
 #include <vector>
+#include <d3dx9math.h>
 
 using namespace std;
 

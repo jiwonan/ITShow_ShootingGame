@@ -1,4 +1,5 @@
 #include "stdafx.h"
+
 #include "Skill.h"
 #include "global.h"
 
