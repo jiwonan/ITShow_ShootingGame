@@ -41,6 +41,7 @@ void CheatManager::KeyF5()
 
 void CheatManager::KeyF6()
 {
+	gameStat.score += 2500;
 	stageManager.LoadGameSecondStage();
 }
 

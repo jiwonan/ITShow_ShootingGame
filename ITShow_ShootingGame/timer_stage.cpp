@@ -8,7 +8,7 @@ TimerStage::TimerStage()
 	Timer = 6;
 
 	top = 0;
-	bottom = 480;
+	bottom = 600;
 
 	isOpen = false;
 
@@ -32,6 +32,8 @@ void TimerStage::Update()
 
 	if (isOpen)
 	{
+		soundManager.sndSecondStageBGM->Reset();
+		soundManager.sndSecondStageBGM->Play(0, DSBPLAY_LOOPING, 1);
 		stageManager.LoadGameSecondStage();
 	}
 }
@@ -46,7 +48,7 @@ void TimerStage::Render()
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = top;
-		srcRect.right = 640;
+		srcRect.right = 800;
 		srcRect.bottom = bottom;
 
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, nullptr, D3DCOLOR_XRGB(255, 255, 255));
@@ -56,8 +58,8 @@ void TimerStage::Render()
 
 	{
 		RECT fontRect;
-		fontRect.left = 310;
-		fontRect.top = 230;
+		fontRect.left = 400;
+		fontRect.top = 330;
 		fontRect.right = 100;
 		fontRect.bottom = 10;
 
@@ -69,7 +71,7 @@ void TimerStage::Render()
 
 	{
 		RECT fontRect;
-		fontRect.left = 200;
+		fontRect.left = 300;
 		fontRect.top = 130;
 		fontRect.right = 100;
 		fontRect.bottom = 10;
@@ -83,7 +85,7 @@ void TimerStage::Render()
 	if (Timer < 4)
 	{
 		RECT fontRect;
-		fontRect.left = 200;
+		fontRect.left = 270;
 		fontRect.top = 160;
 		fontRect.right = 100;
 		fontRect.bottom = 10;

@@ -9,6 +9,8 @@
 //-----------------------------------------------------------------------------
 // Header Includes
 //-----------------------------------------------------------------------------
+#include <Windows.h>
+#include <mmsystem.h>
 #include <dsound.h>
 #define _KS_NO_ANONYMOUS_STRUCTURES_        // avoids most nameless structure in ks.h
 #pragma warning( disable : 4201 )           // disable nonstandard extension used : nameless struct/union
@@ -62,6 +64,16 @@ public:
     HRESULT                 CreateStreaming( CStreamingSound** ppStreamingSound, LPWSTR strWaveFileName,
                                              DWORD dwCreationFlags, GUID guid3DAlgorithm, DWORD dwNotifyCount,
                                              DWORD dwNotifySize, HANDLE hNotifyEvent );
+
+    CSound* sndPlayerBullet;
+    CSound* sndFirstStageBGM;
+    CSound* sndTitleStageBGM;
+    CSound* sndSecondStageBGM;
+    CSound* sndClick;
+    CSound* sndPlayerBulletSpread;
+    CSound* sndBomb;
+    CSound* sndLevelUp;
+    CSound* sndGameOver;
 };
 
 

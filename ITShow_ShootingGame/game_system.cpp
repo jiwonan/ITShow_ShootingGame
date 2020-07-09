@@ -18,7 +18,7 @@
 
 GameSystem::GameSystem()
 {
-
+	isBombOn = false;
 }
 
 void GameSystem::ClearAll()
@@ -181,7 +181,14 @@ void GameSystem::Update()
 			{
 				if (!skill.ShieldOn)
 					player->Hit((*iter)->GetEnemyDamage());
-				(*iter)->Hit(9999);
+				if ((*iter)->GetType() == 2)
+					(*iter)->Hit(9999);
+			}
+
+			if (isBombOn)
+			{
+				if ((*iter)->GetType() == 2)
+					(*iter)->Hit(9999);
 			}
 		}
 		if ((*iter)->IsDead())
@@ -193,6 +200,8 @@ void GameSystem::Update()
 			iter++;
 		}
 	}
+
+	isBombOn = false;
 
 	// Update boss bullets.
 	for (auto iter = bossBullets.begin(); iter != bossBullets.end();)

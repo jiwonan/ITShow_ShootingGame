@@ -15,9 +15,9 @@ GameFirstStage::GameFirstStage()
 	gameStat.fullHP = 200;
 
 	gameStat.playerDamage = 1;
-	gameStat.expGage = 0.8;
+	gameStat.expGage = 1;
 
-	gameStat.generalDamage = 15;
+	gameStat.generalDamage = 6;
 	gameStat.spreadDamage = 1;
 
 	gameStat.shootDelay = 0.3f;
@@ -26,7 +26,7 @@ GameFirstStage::GameFirstStage()
 		OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
 		L"System", &g_pFont);
 
-	per = 50;
+	per = 70;
 
 	enemyTime = 0;
 	gameSystem.player = &player;
@@ -51,8 +51,8 @@ void GameFirstStage::Update()
 			alpha = 0;
 			gameState = kPlaying;
 
-			// soundManager.sndLevel1Background->Reset();
-			// soundManager.sndLevel1Background->Play(0, DSBPLAY_LOOPING, 1);
+			soundManager.sndFirstStageBGM->Reset();
+			soundManager.sndFirstStageBGM->Play(0, DSBPLAY_LOOPING, 1);
 		}
 	}
 	// Pause가 아닐 때.
@@ -84,23 +84,22 @@ void GameFirstStage::Update()
 		}
 
 		// 보스가 아닐 때 배경 업데이트
-		if (gameStat.playerState != kMidBoss)
+		if (gameStat.playerState != kMidBoss || gameStat.playerState != kLastBoss)
 		{
 			background.Update();
-			gameStat.score++;
 		}
 		player.Update();
 		gameSystem.Update();
 
 		// 중간 보스 생성.
-		if (gameStat.score > 1000 && gameStat.playerState == kFirst)
+		if (gameStat.score > 150 && gameStat.playerState == kFirst)
 		{
 			gameStat.playerState = kMidBoss;
 			gameSystem.GenerateBossA();
-			per = 60;
+			per = 70;
 		}
 
-		if (gameStat.score > 3000 && gameStat.playerState == kSecond)
+		if (gameStat.score > 600 && gameStat.playerState == kSecond)
 		{
 			gameStat.playerState = kLastBoss;
 			gameSystem.GenerateBossB();
@@ -138,6 +137,7 @@ void GameFirstStage::Update()
 		{
 			alpha = 255;
 			stageManager.LoadTimerStage();
+			soundManager.sndFirstStageBGM->Stop();
 		}
 	}
 }

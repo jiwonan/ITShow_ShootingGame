@@ -8,6 +8,7 @@
 #include "game_stat.h"
 #include "game_system.h"
 #include "cheat_manager.h"
+#include "SDKsound.h"
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
@@ -19,6 +20,10 @@
 #define TITLE_BTN_IMAGE_HOWTO 1004
 #define HOWTOPLAY_SCREEN_IMAGE 1005
 #define FADE_SCREEN 1006
+#define CLEAR_SCREEN_IMAGE 1007
+#define CLEAR_BTN_IMG 1008
+#define RANKING_SCREEN_IMAGE 1009
+#define RANKING_BTN_IMG 1010
 
 #define GAME_BACKGROUND_IMAGE 2000
 #define GAME_PLAYER_BODY_IMAGE 2001
@@ -30,6 +35,10 @@
 #define GAME_BOSS_BULLET_A_IMAGE 3002
 #define GAME_BOSS_B_BODY_IMAGE 3003
 #define GAME_ENEMY_B_BODY_IMAGE 3004
+#define GAME_BOSS_BULLET_B_IMAGE 3005
+#define GAME_BOSS_BULLET_C_IMAGE 3006
+#define GAME_BOSS_BULLET_D_IMAGE 3007
+#define GAME_ENEMY_BULLET_IMAGE 3008
 
 #define GAME_BACKGROUND_IMAGE_2 4000
 #define GAME_STAGE_2_MID_BOSS_IMAGE 4001
@@ -58,6 +67,7 @@
 #define GAME_SKILL_SHIELD_COOL 8002
 #define GAME_SKILL_BOMB_COOL 8003
 #define GAME_SKILL_COOL_BOX 8004
+#define GAME_SKILL_LOCK 8005
 
 #define GAME_PLAYER_LEVEL_ONE 9001
 #define GAME_PLAYER_LEVEL_TWO 9002
@@ -78,3 +88,4 @@ extern StageManager stageManager;
 extern GameStat gameStat;
 extern GameSystem gameSystem;
 extern CheatManager cheatManager;
+extern CSoundManager soundManager;

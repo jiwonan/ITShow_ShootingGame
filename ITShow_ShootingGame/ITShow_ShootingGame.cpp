@@ -35,6 +35,7 @@ StageManager stageManager;
 GameStat gameStat;
 GameSystem gameSystem;
 CheatManager cheatManager;
+CSoundManager soundManager;
 
 
 void EngineUpdate()
@@ -79,12 +80,60 @@ VOID EngineRender()
 
 void InitMySound(HWND hWnd)
 {
-	/*soundManager.Initialize(hWnd, DSSCL_NORMAL);
+	soundManager.Initialize(hWnd, DSSCL_NORMAL);
 	{
 		WCHAR fileName[MAX_PATH];
-		swprintf_s<MAX_PATH>(fileName, L"sfx/epic_end.wav");
+		swprintf_s<MAX_PATH>(fileName, L"sfx/generalbullet.wav");
 		soundManager.Create(&soundManager.sndPlayerBullet, fileName, DSBCAPS_CTRLVOLUME);
-	}*/
+	}
+
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/stage_one.wav");
+		soundManager.Create(&soundManager.sndFirstStageBGM, fileName, DSBCAPS_CTRLVOLUME);
+	}
+
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/title_bgm.wav");
+		soundManager.Create(&soundManager.sndTitleStageBGM, fileName, DSBCAPS_CTRLVOLUME);
+	}
+
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/stage_two.wav");
+		soundManager.Create(&soundManager.sndSecondStageBGM, fileName, DSBCAPS_CTRLVOLUME);
+	}
+
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/click.wav");
+		soundManager.Create(&soundManager.sndClick, fileName, DSBCAPS_CTRLVOLUME);
+	}
+
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/bulletspread.wav");
+		soundManager.Create(&soundManager.sndPlayerBulletSpread, fileName, DSBCAPS_CTRLVOLUME);
+	}
+
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/bomb.wav");
+		soundManager.Create(&soundManager.sndBomb, fileName, DSBCAPS_CTRLVOLUME);
+	}
+
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/levelUp.wav");
+		soundManager.Create(&soundManager.sndLevelUp, fileName, DSBCAPS_CTRLVOLUME);
+	}
+
+	{
+		WCHAR fileName[MAX_PATH];
+		swprintf_s<MAX_PATH>(fileName, L"sfx/gameover.wav");
+		soundManager.Create(&soundManager.sndGameOver, fileName, DSBCAPS_CTRLVOLUME);
+	}
 }
 
 void InitMyStuff()
@@ -96,13 +145,16 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"ui/ui_btn_howto.png", TITLE_BTN_IMAGE_HOWTO);
 	textureManager.LoadTexture(L"backgrounds/howtoplay.png", HOWTOPLAY_SCREEN_IMAGE);
 	textureManager.LoadTexture(L"backgrounds/fade.png", FADE_SCREEN);
+	textureManager.LoadTexture(L"backgrounds/gameclear.png", CLEAR_SCREEN_IMAGE);
+	textureManager.LoadTexture(L"backgrounds/ranking.png", RANKING_SCREEN_IMAGE);
+	textureManager.LoadTexture(L"ui/ranking_btn.png", RANKING_BTN_IMG);
 
 	textureManager.LoadTexture(L"backgrounds/bg.png", GAME_BACKGROUND_IMAGE);
 	textureManager.LoadTexture(L"player/player.png", GAME_PLAYER_BODY_IMAGE);
 	textureManager.LoadTexture(L"player/player_bullet.png", GAME_PLAYER_BULLET_IMAGE);
 	textureManager.LoadTexture(L"player/player_bullet_g.png", GAME_PLAYER_BULLET_G_IMAGE);
 
-	textureManager.LoadTexture(L"enemies/enemy_a.png", GAME_ENEMY_A_BODY_IMAGE);
+	textureManager.LoadTexture(L"enemies/enemy_a_2.png", GAME_ENEMY_A_BODY_IMAGE);
 	textureManager.LoadTexture(L"enemies/boss_a.png", GAME_BOSS_A_BODY_IMAGE);
 	textureManager.LoadTexture(L"enemies/boss_bullet_a.png", GAME_BOSS_BULLET_A_IMAGE);
 	textureManager.LoadTexture(L"enemies/boss_b.png", GAME_BOSS_B_BODY_IMAGE);
@@ -110,9 +162,9 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"backgrounds/background_2.png", GAME_BACKGROUND_IMAGE_2);
 	textureManager.LoadTexture(L"enemies/stage2_mid_boss.png", GAME_STAGE_2_MID_BOSS_IMAGE);
 	textureManager.LoadTexture(L"enemies/stage2_final_boss.png", GAME_STAGE_2_FINAL_BOSS_IMAGE);
-	textureManager.LoadTexture(L"enemies/enemy_b.png", GAME_ENEMY_B_BODY_IMAGE);
-	textureManager.LoadTexture(L"enemies/enemy_c.png", GAME_ENEMY_C_BODY_IMAGE);
-	textureManager.LoadTexture(L"enemies/enemy_d.png", GAME_ENEMY_D_BODY_IMAGE);
+	textureManager.LoadTexture(L"enemies/enemy_b_2.png", GAME_ENEMY_B_BODY_IMAGE);
+	textureManager.LoadTexture(L"enemies/enemy_c_2.png", GAME_ENEMY_C_BODY_IMAGE);
+	textureManager.LoadTexture(L"enemies/enemy_d_2.png", GAME_ENEMY_D_BODY_IMAGE);
 
 	textureManager.LoadTexture(L"ui/hp_bar.png", GAME_HP_UI);
 	textureManager.LoadTexture(L"ui/hp_bg.png", GAME_HP_BG_UI);
@@ -133,6 +185,9 @@ void InitMyStuff()
 	textureManager.LoadTexture(L"ui/player_info_bar.png", GAME_PLAYER_INFO_BAR);
 	textureManager.LoadTexture(L"ui/skill_shield_cool.png", GAME_SKILL_SHIELD_COOL);
 	textureManager.LoadTexture(L"ui/skill_cool_box.png", GAME_SKILL_COOL_BOX);
+	textureManager.LoadTexture(L"ui/skill_bomb_cool.png", GAME_SKILL_BOMB_COOL);
+	textureManager.LoadTexture(L"ui/locker.png", GAME_SKILL_LOCK);
+
 
 	textureManager.LoadTexture(L"ui/level1.png", GAME_PLAYER_LEVEL_ONE);
 	textureManager.LoadTexture(L"ui/level2.png", GAME_PLAYER_LEVEL_TWO);
@@ -281,6 +336,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	}
 	case WM_LBUTTONUP:
 	{
+		soundManager.sndClick->Reset();
+		soundManager.sndClick->Play(0, 0, 1);
 		inputManager.keyBuffer[VK_LBUTTON] = 0;
 		break;
 	}

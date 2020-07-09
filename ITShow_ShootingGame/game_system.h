@@ -48,5 +48,7 @@ public:
 	void Render();
 
 	void ClearAll();
+
+	bool isBombOn;
 };
 

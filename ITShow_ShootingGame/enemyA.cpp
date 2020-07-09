@@ -20,6 +20,9 @@ EnemyA::EnemyA()
 	isDead = false;
 	isHit = false;
 	enemyState = kMoveToDirection;
+
+	type = 2;
+
 }
 
 void EnemyA::Update()
@@ -64,10 +67,10 @@ void EnemyA::Render()
 	RECT srcRect;
 	srcRect.left = 0;
 	srcRect.top = 0;
-	srcRect.right = 40;
-	srcRect.bottom = 70;
+	srcRect.right = 32;
+	srcRect.bottom = 32;
 
-	D3DXVECTOR3 pos(posX - 20, posY - 35, 0);
+	D3DXVECTOR3 pos(posX - 16, posY - 16, 0);
 	if (isHit)
 	{
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 0, 0));
@@ -97,7 +100,7 @@ D3DXVECTOR2 EnemyA::GetPosition()
 
 float EnemyA::GetRadius()
 {
-	return 20.0f;
+	return 16.0f;
 }
 
 void EnemyA::Hit(float damage)
@@ -106,13 +109,13 @@ void EnemyA::Hit(float damage)
 	isHit = true;
 	if (hp <= 0)
 	{
-		gameStat.score += 100;
+		gameStat.score += 10;
 		if (gameStat.level <= 5)
 			gameStat.exp += 5 * gameStat.expGage;
 		isDead = true;
 		hp = 0;
 
-		if (rand() % 100 < 40)
+		if (rand() % 100 < 30)
 			gameSystem.GenerateItem(posX, posY);
 
 		gameSystem.GenerateEnemyExplosionA(posX, posY);
@@ -145,4 +148,9 @@ void EnemyA::ChooseDirection()
 void EnemyA::MoveToEnd()
 {
 
+}
+
+int EnemyA::GetType()
+{
+	return type;
 }

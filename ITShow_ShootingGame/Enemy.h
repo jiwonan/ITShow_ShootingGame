@@ -12,4 +12,5 @@ public:
 	virtual D3DXVECTOR2 GetPosition() = 0;
 	virtual float GetRadius() = 0;
 	virtual void Hit(float damage) = 0;
+	virtual int GetType() = 0;
 };

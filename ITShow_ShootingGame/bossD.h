@@ -12,6 +12,7 @@ public:
 	D3DXVECTOR2 GetPosition();
 	float GetRadius();
 	void Hit(float damage);
+	int GetType();
 
 	bool isDead;
 	bool isHit;
@@ -27,4 +28,7 @@ public:
 	float speed;
 
 	int hp;
+
+	int type;
+
 };

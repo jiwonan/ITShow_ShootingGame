@@ -10,11 +10,13 @@ GameSecondStage::GameSecondStage()
 
 	D3DXCreateFont(g_pd3dDevice, -12, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET,
 		OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
-		L"System", &g_pFont);
+		L"System", &g_pFont);	
 
 	enemyTime = 0;
 
-	per = 60;
+	alpha = 0;
+
+	per = 80;
 
 	gameStat.playerState = kFirst;
 
@@ -55,27 +57,26 @@ void GameSecondStage::Update()
 		}
 
 		// 보스가 아닐 때 배경 업데이트
-		if (gameStat.playerState != kMidBoss)
+		if (gameStat.playerState != kMidBoss || gameStat.playerState != kLastBoss)
 		{
 			background.Update();
-			gameStat.score++;
 		}
 		player.Update();
 		gameSystem.Update();
 
 		// 중간 보스 생성.
-		if (gameStat.score > 6000 && gameStat.playerState == kFirst)
+		if (gameStat.score > 3100 && gameStat.playerState == kFirst)
 		{
 			gameStat.playerState = kMidBoss;
-			per = 60;
+			per = 85;
 			gameSystem.GenerateBossC();
 		}
 
-		if (gameStat.score > 11000 && gameStat.playerState == kSecond)
+		if (gameStat.score > 4000 && gameStat.playerState == kSecond)
 		{
 			gameStat.playerState = kLastBoss;
 			per = 70;
-			gameSystem.GenerateBossB();
+			gameSystem.GenerateBossD();
 		}
 
 		// 플레이어 레벨업.
@@ -99,7 +100,14 @@ void GameSecondStage::Update()
 
 	if (gameStat.playerState == kEnd)
 	{
-		stageManager.LoadTitleStage();
+
+		alpha += 3;
+		if (alpha > 255)
+		{
+			alpha = 255;
+			soundManager.sndSecondStageBGM->Stop();
+			stageManager.LoadClearStage();
+		}
 	}
 }
 
@@ -133,5 +141,24 @@ void GameSecondStage::Render()
 
 		g_pFont->DrawText(NULL, L"Stage Two", -1, &fontRect, DT_NOCLIP,
 			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+
+	if (gameStat.playerState == kEnd)
+	{
+		TextureElement* fadeElement = textureManager.GetTexture(FADE_SCREEN);
+
+		fadeElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+		RECT srcRect;
+		srcRect.left = 0;
+		srcRect.top = 0;
+		srcRect.right = 800;
+		srcRect.bottom = 600;
+
+		D3DXVECTOR3 pos(0, 0, 0);
+		fadeElement->sprite->Draw(fadeElement->texture, &srcRect, nullptr, &pos,
+			D3DCOLOR_RGBA(0, 0, 0, (int)alpha));
+
+		fadeElement->sprite->End();
 	}
 }

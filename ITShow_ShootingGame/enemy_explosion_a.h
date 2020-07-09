@@ -3,7 +3,7 @@
 #include "sprite_effect.h"
 #include "anim_frame.h"
 #include <vector>
-#include <d3dx9math.h>
+#include <windows.h>
 
 using namespace std;
 
@@ -23,7 +23,7 @@ public:
 	float posY;
 	bool isDead;
 
-	int animIndex;
+	int frameIndex;
 	float animTime;
 };
 

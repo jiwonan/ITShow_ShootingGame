@@ -25,6 +25,12 @@ public:
 	float btnW2;
 	float btnH2;
 
+	float RbtnX;
+	float RbtnY;
+	float RbtnW;
+	float RbtnH;
+
+	int sound;
 
 	// state machine	
 	TitleStageState titleStageState;

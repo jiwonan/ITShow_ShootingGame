@@ -17,5 +17,7 @@ public:
 	float enemyTime;
 
 	int per;
+
+	float alpha;
 };
 

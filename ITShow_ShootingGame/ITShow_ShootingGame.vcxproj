@@ -151,6 +151,7 @@
     <ClInclude Include="boss_bullet.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="cheat_manager.h" />
+    <ClInclude Include="clear_stage.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="enemyA.h" />
     <ClInclude Include="enemyB.h" />
@@ -174,6 +175,7 @@
     <ClInclude Include="player.h" />
     <ClInclude Include="player_bullet.h" />
     <ClInclude Include="player_bullet_g.h" />
+    <ClInclude Include="ranking_stage.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="SDKsound.h" />
     <ClInclude Include="SDKwavefile.h" />
@@ -193,6 +195,7 @@
     <ClCompile Include="bossD.cpp" />
     <ClCompile Include="boss_bullet.cpp" />
     <ClCompile Include="cheat_manager.cpp" />
+    <ClCompile Include="clear_stage.cpp" />
     <ClCompile Include="enemyA.cpp" />
     <ClCompile Include="enemyB.cpp" />
     <ClCompile Include="enemyC.cpp" />
@@ -203,6 +206,7 @@
     <ClCompile Include="game_background_2.cpp" />
     <ClCompile Include="game_first_stage.cpp" />
     <ClCompile Include="game_second_stage.cpp" />
+    <ClCompile Include="game_stat.cpp" />
     <ClCompile Include="game_system.cpp" />
     <ClCompile Include="howto_stage.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -210,6 +214,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="player_bullet.cpp" />
     <ClCompile Include="player_bullet_g.cpp" />
+    <ClCompile Include="ranking_stage.cpp" />
     <ClCompile Include="SDKsound.cpp" />
     <ClCompile Include="SDKwavefile.cpp" />
     <ClCompile Include="Skill.cpp" />

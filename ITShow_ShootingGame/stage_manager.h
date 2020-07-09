@@ -13,6 +13,8 @@ public:
 	void LoadGameoverStage();
 	void LoadTimerStage();
 	void LoadHowtoStage();
+	void LoadClearStage();
+	void LoadRankingStage();
 
 	void Update();
 	void Render();

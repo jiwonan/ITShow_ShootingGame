@@ -74,14 +74,14 @@ void Player::Update()
 	{
 		if (inputManager.keyBuffer['Z'] == 1 && weaponType == kSpread)
 		{
-			//soundManager.sndPlayerBullet->Reset();
-			//soundManager.sndPlayerBullet->Play(0, 0, 1);
+			soundManager.sndPlayerBulletSpread->Reset();
+			soundManager.sndPlayerBulletSpread->Play(0, 0, 1);
 			gameSystem.GeneratePlayerBulletSpread(playerX, playerY);
 		}
 		if (inputManager.keyBuffer['Z'] == 1 && weaponType == kGeneral)
 		{
-			//soundManager.sndPlayerBullet->Reset();
-			//soundManager.sndPlayerBullet->Play(0, 0, 1);
+			soundManager.sndPlayerBullet->Reset();
+			soundManager.sndPlayerBullet->Play(0, 0, 1);
 			gameSystem.GeneratePlayerBulletGeneral(playerX, playerY);
 		}
 		shootTime = 0;
@@ -215,10 +215,12 @@ float Player::GetRadius()
 void Player::Hit(float damage)
 {
 
-	gameStat.hp -= damage * gameStat.playerDamage;
+	gameStat.hp -= damage * 2 * gameStat.playerDamage;
 	if (gameStat.hp <= 0)
 	{
 		gameStat.hp = 0;
+		soundManager.sndGameOver->Reset();
+		soundManager.sndGameOver->Play(0, 0, 1);
 		stageManager.LoadGameoverStage();
 	}
 	isInvincible = true;
@@ -235,7 +237,7 @@ void Player::HitByItem(int type)
 	case kLevelUp:
 		{
 			if (gameStat.level < 5) {
-				gameStat.PlayerLevelUp();
+				gameStat.level += 50;
 			}
 			break;
 		}

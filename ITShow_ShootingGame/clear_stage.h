@@ -1,22 +1,21 @@
 #pragma once
 #include "Stage.h"
-
 #include <d3dx9core.h>
 #include <vector>
 
 using namespace std;
 
-class GameoverStage : public Stage
+class ClearStage : public Stage
 {
 public:
 	enum StageState
 	{
 		kWaitingPlayerName
 	};
-	GameoverStage();
-	~GameoverStage();
-	void Update();
-	void Render();
+	ClearStage();
+	virtual ~ClearStage();
+	void Update() override;
+	void Render() override;
 
 	vector<char> playerName;
 

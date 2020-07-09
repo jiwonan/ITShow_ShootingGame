@@ -19,6 +19,9 @@ BossD::BossD()
 	floatingTime = 0;
 	shootingTime = 0;
 	speed = 200;
+
+	type = 1;
+
 }
 
 void BossD::Update()
@@ -91,24 +94,24 @@ void BossD::Render()
 	}
 	// boss HP BG
 	{
-		TextureElement* newElement = textureManager.GetTexture(GAME_HP_BG_UI);
+		TextureElement* newElement = textureManager.GetTexture(GAME_BOSS_HP_BG_UI);
 
 		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
 		RECT srcRect;
 		srcRect.left = 0;
 		srcRect.top = 0;
-		srcRect.right = 600;
-		srcRect.bottom = 19;
+		srcRect.right = 303;
+		srcRect.bottom = 49;
 
-		D3DXVECTOR3 pos(WINDOW_WIDTH / 2 - 300, 10, 0);
+		D3DXVECTOR3 pos(WINDOW_WIDTH / 2 - 151, 5, 0);
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 		newElement->sprite->End();
 	}
 
 	// boss HP
 	{
-		TextureElement* newElement = textureManager.GetTexture(GAME_HP_UI);
+		TextureElement* newElement = textureManager.GetTexture(GAME_BOSS_HP_UI);
 
 		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
@@ -116,9 +119,9 @@ void BossD::Render()
 		srcRect.left = 0;
 		srcRect.top = 0;
 		srcRect.right = hp;
-		srcRect.bottom = 19;
+		srcRect.bottom = 49;
 
-		D3DXVECTOR3 pos(WINDOW_WIDTH / 2 - 300, 10, 0);
+		D3DXVECTOR3 pos(WINDOW_WIDTH / 2 - 151, 5, 0);
 		newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 		newElement->sprite->End();
 	}
@@ -159,4 +162,9 @@ void BossD::Hit(float damage)
 		if (gameStat.level <= 5)
 			gameStat.exp += hp * gameStat.expGage;
 	}
+}
+
+int BossD::GetType()
+{
+	return type;
 }

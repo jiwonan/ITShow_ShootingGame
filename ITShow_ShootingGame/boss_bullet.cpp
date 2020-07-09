@@ -35,10 +35,10 @@ void BossBullet::Render()
 	RECT srcRect;
 	srcRect.left = 0;
 	srcRect.top = 0;
-	srcRect.right = 9;
-	srcRect.bottom = 9;
+	srcRect.right = 15;
+	srcRect.bottom = 14;
 
-	D3DXVECTOR3 pos(posX - 5, posY - 5, 0);
+	D3DXVECTOR3 pos(posX - 8, posY - 7, 0);
 	newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
 
 	newElement->sprite->End();
@@ -61,7 +61,7 @@ D3DXVECTOR2 BossBullet::GetPosition()
 
 float BossBullet::GetRadius()
 {
-	return 5.0f;
+	return 8.0f;
 }
 
 void BossBullet::Hit()

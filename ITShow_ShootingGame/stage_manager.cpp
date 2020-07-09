@@ -9,6 +9,8 @@
 #include "gameover_stage.h"
 #include "timer_stage.h"
 #include "howto_stage.h"
+#include "clear_stage.h"
+#include "ranking_stage.h"
 
 void StageManager::LoadTitleStage()
 {
@@ -67,6 +69,26 @@ void StageManager::LoadHowtoStage()
 		delete currentStage;
 	}
 	HowtoStage* stage = new HowtoStage();
+	currentStage = stage;
+}
+
+void StageManager::LoadClearStage()
+{
+	if (currentStage != nullptr)
+	{
+		delete currentStage;
+	}
+	ClearStage* stage = new ClearStage();
+	currentStage = stage;
+}
+
+void StageManager::LoadRankingStage()
+{
+	if (currentStage != nullptr)
+	{
+		delete currentStage;
+	}
+	RankingStage* stage = new RankingStage();
 	currentStage = stage;
 }
 

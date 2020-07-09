@@ -15,6 +15,8 @@ public:
 	float ShieldTime;
 	float ShieldCoolTime;
 
+	float BombCoolTime;
+
 	float posX;
 	float posY;
 	

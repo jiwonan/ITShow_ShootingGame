@@ -17,6 +17,8 @@ BossA::BossA()
 	floatingTime = 0;
 	shootingTime = 0;
 	speed = 200;
+	
+	type = 1;
 }
 
 void BossA::Update()
@@ -149,4 +151,9 @@ void BossA::Hit(float damage)
 		if (gameStat.level <= 5)
 			gameStat.exp += hp * gameStat.expGage;
 	}
+}
+
+int BossA::GetType()
+{
+	return type;
 }

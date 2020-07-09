@@ -141,6 +141,12 @@
     <ClInclude Include="SDKwavefile.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="clear_stage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ranking_stage.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ITShow_ShootingGame.cpp">
@@ -231,6 +237,15 @@
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="SDKwavefile.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="clear_stage.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="game_stat.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ranking_stage.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>

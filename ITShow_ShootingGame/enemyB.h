@@ -12,6 +12,7 @@ public:
 	D3DXVECTOR2 GetPosition();
 	float GetRadius();
 	void Hit(float damage);
+	int GetType();
 
 	float posX;
 	float posY;
@@ -24,5 +25,8 @@ public:
 	bool isHit;
 
 	int enemyDamage;
+
+	int type;
+
 };
 

@@ -1,14 +1,18 @@
 #include "stdafx.h"
-
-#include "gameover_stage.h"
+#include "clear_stage.h"
 #include "global.h"
 #include <string>
 
-GameoverStage::GameoverStage()
+ClearStage::ClearStage()
 {
-
 	stageState = kWaitingPlayerName;
 	alpha = 0;
+
+	btnX = WINDOW_WIDTH / 2 - 90;
+	btnY = WINDOW_HEIGHT * 0.7 - 25;
+
+	btnW = 180;
+	btnH = 50;
 
 	D3DXCreateFont(g_pd3dDevice, 30, 0, FW_BOLD, 1, FALSE, DEFAULT_CHARSET,
 		OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
@@ -37,17 +41,14 @@ GameoverStage::GameoverStage()
 		DEFAULT_PITCH | FF_DONTCARE, // PitchAndFamily
 		g_strFont,              // pFaceName
 		&font);              // ppFont
-
-	soundManager.sndFirstStageBGM->Stop();
-	soundManager.sndSecondStageBGM->Stop();
 }
 
-GameoverStage::~GameoverStage()
+ClearStage::~ClearStage()
 {
 	font->Release();
 }
 
-void GameoverStage::Update()
+void ClearStage::Update()
 {
 	if (stageState == kWaitingPlayerName)
 	{
@@ -85,18 +86,27 @@ void GameoverStage::Update()
 			}
 		}
 	}
-	/*if (inputManager.keyBuffer[VK_LBUTTON] == 0 &&
-		inputManager.prevKeyBuffer[VK_LBUTTON] == 1)
-	{
-			stageManager.LoadTitleStage();
-	}*/
+
+	//POINT pt;
+	//GetCursorPos(&pt);
+	//ScreenToClient(gWindowHandle, &pt);
+
+	//if (inputManager.keyBuffer[VK_LBUTTON] == 0 &&
+	//	inputManager.prevKeyBuffer[VK_LBUTTON] == 1)
+	//{
+	//	if (pt.x > btnX && pt.x<btnX + btnW &&
+	//		pt.y>btnY && pt.y < btnY + btnH)
+	//	{
+	//		stageManager.LoadTitleStage();
+	//	}
+	//}
 }
 
-void GameoverStage::Render()
+void ClearStage::Render()
 {
 	// draw BG
 	{
-		TextureElement* newElement = textureManager.GetTexture(GAMEOVER_SCREEN_IMAGE);
+		TextureElement* newElement = textureManager.GetTexture(CLEAR_SCREEN_IMAGE);
 
 		newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
 
@@ -120,11 +130,29 @@ void GameoverStage::Render()
 		font->DrawText(NULL, buffer, -1, &rc, DT_NOCLIP,
 			D3DXCOLOR(0.0f, 1.0f, 0.0f, 1.0f));
 	}
+	//// draw Btn
+	//{
+	//	TextureElement* newElement = textureManager.GetTexture(GAMEOVER_BTN_IMG);
+
+	//	newElement->sprite->Begin(D3DXSPRITE_ALPHABLEND);
+
+	//	RECT srcRect;
+	//	srcRect.left = 0;
+	//	srcRect.top = 0;
+	//	srcRect.right = 180;
+	//	srcRect.bottom = 50;
+
+	//	D3DXVECTOR3 pos(btnX, btnY, 0);
+
+	//	newElement->sprite->Draw(newElement->texture, &srcRect, nullptr, &pos, D3DCOLOR_XRGB(255, 255, 255));
+
+	//	newElement->sprite->End();
+	//}
 
 	{
 		RECT fontRect;
-		fontRect.left = 280;
-		fontRect.top = 300;
+		fontRect.left = 270;
+		fontRect.top = 160;
 		fontRect.right = 100;
 		fontRect.bottom = 10;
 

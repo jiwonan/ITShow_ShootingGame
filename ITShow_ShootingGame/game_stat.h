@@ -9,6 +9,13 @@ enum State
 	kEnd
 };
 
+class PlayerInfo
+{
+public:
+	char playerName[128];
+	int playerScore;
+};
+
 class GameStat
 {
 public:
@@ -34,17 +41,12 @@ public:
 
 	bool cheatInvincible;
 
-	void PlayerLevelUp()
-	{
-		playerLevelUp *= 1.5;
-		exp = 0;
-		level++;
-		hp = fullHP;
-		playerDamage *= 0.8;
-		expGage *= 0.7;
-		speed *= 1.2;
-		shootDelay /= 1.5;
-		generalDamage *= 1.2;
-		spreadDamage *= 1.2;
-	}
+	PlayerInfo ranking[6];
+
+	GameStat();
+	void Load();
+	void Save();
+	void SaveNewRecord(const char* playerName);
+
+	void PlayerLevelUp();
 };
