@@ -16,7 +16,7 @@ EnemyC::EnemyC()
 	floatingTime = 0;
 	enemyDamage = 30;
 
-	hp = 20;
+	hp = 15;
 	isDead = false;
 	isHit = false;
 
@@ -36,11 +36,11 @@ void EnemyC::Update()
 
 	int range = rand() % 50 + 150;
 
-	posX = (WINDOW_WIDTH / 2) + sinf(floatingTime * 2) * 200;
+	posX = (WINDOW_WIDTH / 2) + sinf(floatingTime * 1) * 200;
 
-	if (posX > (WINDOW_WIDTH / 2) + sinf(floatingTime * 2) * 200)
+	if (posX > (WINDOW_WIDTH / 2) + sinf(floatingTime * 1) * 200)
 	{
-		posX = (WINDOW_WIDTH / 2) + sinf(floatingTime * 2) * 200;
+		posX = (WINDOW_WIDTH / 2) + sinf(floatingTime * 1) * 200;
 		floatingTime = 0;
 	}
 	posY += velY * deltaTime;

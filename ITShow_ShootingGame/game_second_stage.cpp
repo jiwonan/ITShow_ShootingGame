@@ -16,7 +16,7 @@ GameSecondStage::GameSecondStage()
 
 	alpha = 0;
 
-	per = 80;
+	per = 90;
 
 	gameStat.playerState = kFirst;
 
@@ -65,10 +65,10 @@ void GameSecondStage::Update()
 		gameSystem.Update();
 
 		// 중간 보스 생성.
-		if (gameStat.score > 3100 && gameStat.playerState == kFirst)
+		if (gameStat.score > 3000 && gameStat.playerState == kFirst)
 		{
 			gameStat.playerState = kMidBoss;
-			per = 85;
+			per = 95;
 			gameSystem.GenerateBossC();
 		}
 
@@ -134,7 +134,7 @@ void GameSecondStage::Render()
 	// Stage
 	{
 		RECT fontRect;
-		fontRect.left = 545;
+		fontRect.left = WINDOW_WIDTH - 80;
 		fontRect.top = 0;
 		fontRect.right = 30;
 		fontRect.bottom = 10;

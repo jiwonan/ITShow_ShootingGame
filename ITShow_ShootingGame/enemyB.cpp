@@ -15,7 +15,7 @@ EnemyB::EnemyB()
 
 	enemyDamage = 20;
 
-	hp = 10;
+	hp = 6;
 	isDead = false;
 	isHit = false;
 

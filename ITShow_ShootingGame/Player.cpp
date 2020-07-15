@@ -61,8 +61,8 @@ void Player::Update()
 		playerY = WINDOW_HEIGHT - 21;
 
 	// 공격 키 전환.
-	if (inputManager.prevKeyBuffer['K'] == 1 &&
-		inputManager.keyBuffer['K'] == 0)
+	if (inputManager.prevKeyBuffer['X'] == 1 &&
+		inputManager.keyBuffer['X'] == 0)
 	{
 		if (weaponType == kSpread)
 			weaponType = kGeneral;

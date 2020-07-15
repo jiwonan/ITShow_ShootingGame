@@ -16,7 +16,7 @@ EnemyA::EnemyA()
 
 	enemyDamage = 10;
 
-	hp = 5;
+	hp = 3;
 	isDead = false;
 	isHit = false;
 	enemyState = kMoveToDirection;

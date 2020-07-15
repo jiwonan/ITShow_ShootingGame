@@ -26,7 +26,7 @@ GameFirstStage::GameFirstStage()
 		OUT_DEFAULT_PRECIS, DEFAULT_QUALITY, DEFAULT_PITCH | FF_DONTCARE,
 		L"System", &g_pFont);
 
-	per = 70;
+	per = 80;
 
 	enemyTime = 0;
 	gameSystem.player = &player;
@@ -92,11 +92,11 @@ void GameFirstStage::Update()
 		gameSystem.Update();
 
 		// 중간 보스 생성.
-		if (gameStat.score > 150 && gameStat.playerState == kFirst)
+		if (gameStat.score > 120 && gameStat.playerState == kFirst)
 		{
 			gameStat.playerState = kMidBoss;
 			gameSystem.GenerateBossA();
-			per = 70;
+			per = 85;
 		}
 
 		if (gameStat.score > 600 && gameStat.playerState == kSecond)
@@ -171,6 +171,31 @@ void GameFirstStage::Render()
 		fontRect.bottom = 10;
 
 		g_pFont->DrawText(NULL, L"Stage One", -1, &fontRect, DT_NOCLIP,
+			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+
+	{
+		RECT fontRect;
+		fontRect.left = WINDOW_WIDTH - 80;
+		fontRect.top = 0;
+		fontRect.right = 30;
+		fontRect.bottom = 10;
+
+		g_pFont->DrawText(NULL, L"Stage One", -1, &fontRect, DT_NOCLIP,
+			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
+	}
+
+	{
+		RECT fontRect;
+		fontRect.left = WINDOW_WIDTH - 80;
+		fontRect.top = 30;
+		fontRect.right = 30;
+		fontRect.bottom = 10;
+
+		WCHAR buffer[128];
+		swprintf_s(buffer, 128, L"EXP: %f", gameStat.exp);
+
+		g_pFont->DrawText(NULL, buffer, -1, &fontRect, DT_NOCLIP,
 			D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 	}
 

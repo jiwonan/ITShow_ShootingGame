@@ -240,24 +240,23 @@ void GameSystem::Update()
 	for (auto iter = items.begin(); iter != items.end();)
 	{
 		(*iter)->Update();
+
 		// Check player body, enemy collided.
-		if (!player->isInvincible)
+		D3DXVECTOR2 playerPos = player->GetPosition();
+		float playerR = player->GetRadius();
+
+		D3DXVECTOR2 itemPos = (*iter)->GetPosition();
+		float itemR = (*iter)->GetRadius();
+
+		bool Result = IsCircleCollided(playerPos.x, playerPos.y, playerR,
+			itemPos.x, itemPos.y, itemR);
+
+		if (Result)
 		{
-			D3DXVECTOR2 playerPos = player->GetPosition();
-			float playerR = player->GetRadius();
-
-			D3DXVECTOR2 itemPos = (*iter)->GetPosition();
-			float itemR = (*iter)->GetRadius();
-
-			bool Result = IsCircleCollided(playerPos.x, playerPos.y, playerR,
-				itemPos.x, itemPos.y, itemR);
-
-			if (Result)
-			{
-				player->HitByItem((*iter)->type);
-				(*iter)->Hit();
-			}
+			player->HitByItem((*iter)->type);
+			(*iter)->Hit();
 		}
+	
 		if ((*iter)->IsDead())
 		{
 			iter = items.erase(iter);

@@ -16,7 +16,7 @@ EnemyD::EnemyD()
 	shootingTime = 0.5;
 	enemyDamage = 35;
 
-	hp = 30;
+	hp = 25;
 	isDead = false;
 	isHit = false;
 
